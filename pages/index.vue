@@ -42,7 +42,7 @@ query homePageQuery{
 
 const {data} = await useAsyncQuery(query)
 
-console.log(data)
+
 
 </script>
 
