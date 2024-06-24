@@ -24,6 +24,11 @@ export default defineNuxtConfig({
 
   image: {
     format: ['webp'],
+    strapi: {
+      baseURL: 'http://localhost:1337'
+    },
+    // dir: 'public',
+
   },
 
   apollo: {
@@ -42,5 +47,7 @@ export default defineNuxtConfig({
       include: ['Ripple', 'AnimateOnScroll']
     }
   },
+
+
 
 })

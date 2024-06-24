@@ -1,16 +1,12 @@
 <script setup lang="ts">
 import ButtonComponent from "~/components/ui/ButtonComponent.vue";
 
-const url = 'http://localhost:1337'
-
 
 const props = defineProps({
   data: Object,
 })
 
-
-
-
+const content = computed(() => props.data?.page.data.attributes.blocks[1] ?? null);
 
 </script>
 
@@ -18,10 +14,9 @@ const props = defineProps({
   <section class="bg-white py-12 lg:py-40 px-4">
     <div class="container mx-auto flex flex-col lg:flex-row">
       <div class="lg:w-3/5 2xl:w-1/2">
-        <h2 v-animateonscroll="{ enterClass: 'animate-fade-up animate-once animate-ease-out animate-delay-[300ms] animate-duration-[600ms]' }" class="text-neutral-800 text-4xl lg:text-6xl font-bold leading-[120%] mb-3 text-center lg:text-left">Legyél Te is
-          <br> az <span class="text-green-500">Életed Hőse!</span></h2>
-        <p class="lg:text-xl text-neutral-600 leading-relaxed  lg:text-left">
-          Az Optima Online segít azoknak, akiknek nehézséget okoz az alkoholfogyasztás kontrollálása, és nincs lehetőségük hosszan terápiára járni. Ha szeretnéd megtanulni az önkontrollt, és nem akarod, hogy a környezeted alkoholistának tartson, akkor az Optima segítségével diszkrét támogatáshoz juthatsz a saját otthonodból. Személyre szabott útmutatásokkal és egy támogató közösséggel ébresztünk rá, hogy nem vagy egyedül. Szégyenérzet nélkül, magabiztosan dolgozhatsz a változásért egy boldogabb, egészségesebb élet érdekében.
+        <h2 v-html="content.title" v-animateonscroll="{ enterClass: 'animate-fade-up animate-once animate-ease-out animate-delay-[300ms] animate-duration-[600ms]' }" class="text-neutral-800 text-4xl lg:text-6xl font-bold leading-[120%] mb-3 text-center lg:text-left"></h2>
+        <p v-html="content.text" class="lg:text-xl text-neutral-600 leading-relaxed  lg:text-left">
+
         </p>
         <div class="mt-6 mb-12 flex gap-3 flex-col lg:flex-row">
           <ButtonComponent class="primary">

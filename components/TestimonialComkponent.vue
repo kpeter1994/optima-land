@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import Carousel from 'primevue/carousel';
 
+const props = defineProps({
+  data: Object,
+})
+
 const responsiveOptions = ref([
   {
     breakpoint: '1400px',
@@ -76,38 +80,38 @@ const products = ref([
 
 
 <template>
+
+
   <div class="card">
-    <Carousel :value="products" :numVisible="3" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="3000">
+    <Carousel :value="props.data.card" :numVisible="3" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="3000">
       <template #item="slotProps">
-        <div class="border-1 surface-border rounded-2xl bg-white h-full border my-10 md:mx-3  p-6 relative">
+        <div class="border-1 surface-border rounded-2xl bg-white h-[380px] lg:h-[300px]  border my-10 md:mx-3 px-6 pt-12  pb-6 relative">
 
           <div class="mb-3">
-            <div v-if="slotProps.data.image" class="w-20 h-20 bg-white border rounded-full absolute -top-10 left-1/2 -translate-x-1/2 p-1">
-              <NuxtImg sizes="xs:70px lg:70px" format="webp" :src="`/image/${slotProps.data.image}`" :alt="slotProps.data.name" class="w-full h-full object-cover rounded-full"/>
-            </div>
+           <div v-if="slotProps.data.image.data" class="w-20 h-20 bg-white border rounded-full absolute -top-10 left-1/2 -translate-x-1/2 p-1">
+             <NuxtImg sizes="xs:70px lg:70px" format="webp" :src="slotProps.data.image.data.attributes.url" :alt="slotProps.data.image.data.attributes.alternativeText" class="w-full h-full object-cover rounded-full"/>
+           </div>
           </div>
 
-          <div class="mb-2">
-            <img class="w-12 rotate-180" src="/image/velemenyek.svg" alt="vélemények">
+          <div class="absolute top-6 left-6 opacity-5">
+            <img class="w-40 rotate-180" src="/image/velemenyek.svg" alt="vélemények">
           </div>
 
-          <div class="flex justify-content-between align-items-center">
+          <div class="flex justify-content-between align-items-center relative z-10">
 
-            <div class="mt-0 mb-3 font-semibold text-neutral-600">{{ slotProps.data.text }}</div>
-
+            <div class="mt-0 mb-3 font-semibold text-neutral-600" v-html="slotProps.data.text"></div>
 
 
             <span>
                     <Button icon="pi pi-heart" severity="secondary" outlined/>
                     <Button icon="pi pi-shopping-cart" class="ml-2"/>
               </span>
+
           </div>
 
-          <div class="mb-3 font-medium text-right">{{ slotProps.data.name }}</div>
+          <div class="mb-3 font-medium text-right">{{ slotProps.data.title }}</div>
 
-          <div class="mb-t flex justify-end">
-            <img class="w-12 " src="/image/velemenyek.svg" alt="vélemények">
-          </div>
+
         </div>
       </template>
     </Carousel>

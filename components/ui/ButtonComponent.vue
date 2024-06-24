@@ -16,15 +16,21 @@ const props = defineProps({
 <style scoped>
 
 .btn {
-  @apply ring font-bold text-xl justify-center px-4 py-3 rounded-lg inline-flex items-center shadow;
+  @apply  font-bold text-lg shadow-inner justify-center px-4 py-4 rounded-xl inline-flex items-center ;
 }
 
 .primary {
-  @apply bg-green-400 ring ring-green-400 text-black font-bold hover:bg-green-500 shadow;
+  @apply bg-gradient-to-l from-green-600 to-green-300 hover:from-green-300 hover:to-green-100 transition-all text-black font-bold hover:bg-green-500 shadow inner-shadow;
 }
 
 .secondary {
-  @apply ring ring-white font-bold text-white  hover:bg-white hover:text-black shadow;
+  @apply bg-white transition-all text-black font-bold hover:bg-white inner-shadow;
+}
+
+.inner-shadow {
+  box-shadow: inset 1px 1px 3px 1px rgba(255, 255, 255, 0.6),
+    /* Outer gray shadow */
+  //3px 3px 5px 0 rgba(128, 128, 128, 0.7);
 }
 
 </style>
